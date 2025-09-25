@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval'">
+  
   <meta charset="UTF-8">
   <title>Frame Animation to Letter</title>
   <style>
@@ -44,23 +44,14 @@
     frameEl.src = frames[index];
 
     // play through frames
-    //function playFrames() {
-      //if (index < frames.length - 1) {
-        //index++;
-        //frameEl.src = frames[index];
-        //setTimeout(() => requestAnimationFrame(playFrames), 50); // adjust speed here
-      //}
-    //}
     function playFrames() {
-      const interval = setInterval(() => {
-        if (index < frames.length - 1) {
-          index++;
-          frameEl.src = frames[index];
-        } else {
-          clearInterval(interval); // stop when finished
-        }
-      }, 50); // 50ms per frame
+      if (index < frames.length - 1) {
+        index++;
+        frameEl.src = frames[index];
+        setTimeout(playFrames, 50); // adjust speed (ms per frame)
+      }
     }
+
     // auto-start animation
     playFrames();
 
