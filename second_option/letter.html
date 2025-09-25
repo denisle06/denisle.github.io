@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video to Image Transition</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+    }
+    video, img {
+      max-width: 80%;
+      max-height: 80%;
+      cursor: pointer;
+      display: block;
+    }
+    img {
+      display: none; /* hide image initially */
+    }
+  </style>
+</head>
+<body>
+  <video id="myVideo" autoplay muted>
+    <source src="test.mp4" type="video/mp4">
+    Your browser does not support HTML video.
+  </video>
+  <img id="myImage" src="letter.jpg" alt="Image after video">
+
+  <script>
+    const video = document.getElementById("myVideo");
+    const image = document.getElementById("myImage");
+
+    // Function to switch video → image
+    function showImage() {
+      video.style.display = "none";
+      image.style.display = "block";
+    }
+
+    // Click on video → show image
+    video.addEventListener("click", showImage);
+
+    // When video ends → show image
+    video.addEventListener("ended", showImage);
+  </script>
+</body>
+</html>

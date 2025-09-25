@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frame Animation to Letter</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+    }
+    img {
+      max-width: 100vw;
+      max-height: 100vh;
+      display: block;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <img id="frame" alt="animation frame">
+
+  <script>
+    // preload frames
+    //const frames = [
+      //"ezgif-frame1.jpg",
+      //"ezgif-frame2.jpg",
+      //"ezgif-letter.jpg" // final frame
+    //];
+
+    const frames = [];
+
+    for (let i = 1; i <= 60; i++) {
+      if (i > 9) frames.push(`frames/ezgif-frame-0${i}.jpg`); 
+      else frames.push(`frames/ezgif-frame-00${i}.jpg`);
+    }
+
+    let index = 0;
+    const frameEl = document.getElementById("frame");
+    frameEl.src = frames[index];
+
+    // play through frames
+    function playFrames() {
+      if (index < frames.length - 1) {
+        index++;
+        frameEl.src = frames[index];
+        setTimeout(playFrames, 50); // adjust speed (ms per frame)
+      }
+    }
+
+    // auto-start animation
+    playFrames();
+
+    // optional: clicking skips straight to final frame
+    frameEl.addEventListener("click", () => {
+      frameEl.src = frames[frames.length - 1];
+      index = frames.length - 1;
+    });
+  </script>
+</body>
+</html>
